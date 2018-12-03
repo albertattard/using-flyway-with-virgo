@@ -95,7 +95,7 @@ Import-Package: javax.sql,org.apache.commons.logging;version="[1.1,2)"
  ;resolution:=optional,org.osgi.framework;version="1.3.0";resolution:=
  mandatory,org.springframework.jdbc.core;version="[2.5,5.0)";resolutio
  n:=optional,org.springframework.jdbc.datasource;version="[2.5,5.0)";r
- esolution:=optional<span class="highlight">,org.slf4j;resolution:=optional</span>
+ esolution:=optional,org.slf4j;resolution:=optional
 Tool: Bnd-1.50.0
 Export-Package: org.flywaydb.core;uses:="org.flywaydb.core.api,org.fly
  waydb.core.api.callback,org.flywaydb.core.api.resolver,javax.sql";ver
@@ -185,8 +185,8 @@ public class Deploy extends BaseMojo {
       String artefactPath = getArtefactFile().getAbsolutePath().replaceAll("\\\\", "/");
       logger.info("Add " + artefactPath + " to the argument list");
 
-      <span class="highlight">// Replace the spaces with %20
-      artefactPath = artefactPath.replace(" ", "%20");</span>
+      // Replace the spaces with %20
+      artefactPath = artefactPath.replace(" ", "%20");
 
       final ObjectName name = new ObjectName(BaseMojo.MBEAN_DEPLOYER);
       final Object[] params = { "file:///" + artefactPath, isRecoverable() };
@@ -319,7 +319,7 @@ Let us break this class in to small pieces and describe each piece individually.
     The `start()` method is executed when the module starts.  This is very similar to the `main()` in a traditional Java application.  When the module is stopped, or undeployed, `stop()` method is executed.  These two methods are a perfect fit for any initialisation or disposal functionality.
 
 1. The `start()` method starts by initialising the data source, creates an instance of `Flyway` ([Java Doc](http://flywaydb.org/documentation/api/javadoc.html)) and the migrates the database.
-  
+
     ```java
       @Override
       public void start(final BundleContext context) throws Exception {
